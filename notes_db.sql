@@ -45,6 +45,7 @@ INSERT INTO `categories` VALUES
 (10,"Books");
 UNLOCK TABLES;
 
+#	Creación y llenado de tabla notes
 DROP TABLE IF EXISTS `notes`;
 CREATE TABLE `notes` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -80,7 +81,7 @@ The officer said, “We’ll be landing on Trantor by morning.”
 “I mean I want to see it from Space.”",1,9);
 UNLOCK TABLES;
 
-#	Creación y llenado de tabla users
+#	Creación y llenado de tabla category_note
 DROP TABLE IF EXISTS `category_note`;
 CREATE TABLE `category_note` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -116,10 +117,12 @@ INSERT INTO `category_note` VALUES
 (20,10,1);
 UNLOCK TABLES;
 
-select notes.title, categories.name
+select notes.title, categories.name, users.name
 from notes
 inner join category_note
 on notes.id = category_note.note_id
 inner join categories
-on categories.id = category_note.category_id;
+on categories.id = category_note.category_id
+inner join users
+on notes.user_id = users.id;
 
